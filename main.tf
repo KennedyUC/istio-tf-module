@@ -5,17 +5,21 @@ resource "helm_release" "istio_base" {
   chart            = "base"
   namespace        = var.istio_namespace
   create_namespace = var.helm_create_namespace
-  values           = []
-  atomic           = true
 }
 
 resource "helm_release" "istio_d" {
   depends_on       = [helm_release.istio_base]
-  name             = "istio-d"
+  name             = "istiod"
   repository       = var.istio_chart_repo
   chart            = "istiod"
   namespace        = var.istio_namespace
   create_namespace = var.helm_create_namespace
-  values           = []
-  atomic           = false
+}
+
+resource "helm_release" "istio-ingress" {
+  depends_on = [helm_release.istio_d]
+  name       = "istio-ingress"
+  repository = var.istio_chart_repo
+  chart      = "gateway"
+  namespace  = var.istio_namespace
 }
