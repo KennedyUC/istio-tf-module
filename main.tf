@@ -1,12 +1,3 @@
-resource "null_resource" "manage-ns" {
-  provisioner "local-exec" {
-    command = "sudo chmod +x create-ns.sh"
-  }
-  provisioner "local-exec" {
-    command = "sudo ./create-ns.sh"
-  }
-}
-
 resource "helm_release" "istio_base" {
   depends_on       = [null_resource.manage_ns]
   name             = "istio-base"
