@@ -1,5 +1,5 @@
 resource "helm_release" "istio_base" {
-  name             = "istio_base"
+  name             = "istio-b"
   repository       = var.istio_chart_repo
   chart            = "base"
   namespace        = var.istio_namespace
