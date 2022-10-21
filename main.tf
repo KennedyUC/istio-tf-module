@@ -1,5 +1,4 @@
 resource "helm_release" "istio_base" {
-  depends_on       = [null_resource.manage_ns]
   name             = "istio-base"
   repository       = var.istio_chart_repo
   chart            = "base"
