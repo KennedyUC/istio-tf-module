@@ -1,5 +1,5 @@
 resource "helm_release" "istio_base" {
-  name             = "istio-base"
+  name             = "istio_base"
   repository       = var.istio_chart_repo
   chart            = "base"
   namespace        = var.istio_namespace
@@ -8,7 +8,7 @@ resource "helm_release" "istio_base" {
 
 resource "helm_release" "istio_d" {
   depends_on       = [helm_release.istio_base]
-  name             = "istiod"
+  name             = "istio_d"
   repository       = var.istio_chart_repo
   chart            = "istiod"
   namespace        = var.istio_namespace
